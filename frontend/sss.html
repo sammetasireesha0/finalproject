@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BudgetTrans Editor</title>
+</head>
+<body>
+
+  <label for="userID">UserID:</label>
+  <input type="text" id="userID">
+
+  <label for="forWhat">ForWhat:</label>
+  <input type="text" id="forWhat">
+
+  <button onclick="getRecordDetails()">Get Record Details</button>
+
+  <div id="recordDetails" style="display: none;">
+    <label for="amount">Amount:</label>
+    <input type="text" id="amount">
+
+    <button onclick="saveRecord()">Save</button>
+  </div>
+
+  <script>
+    function getRecordDetails() {
+      var userID = document.getElementById("userID").value;
+      var forWhat = document.getElementById("forWhat").value;
+
+      // Assume you have a backend API to fetch the record details based on UserID and ForWhat
+      // You can use fetch or any other method to make an API call
+      // Replace the URL with your actual backend API endpoint
+      fetch(`/api/getRecordDetails?userID=${userID}&forWhat=${forWhat}`)
+        .then(response => response.json())
+        .then(data => {
+          // Populate the details in the form
+          document.getElementById("amount").value = data.Amount;
+          // Show the details form
+          document.getElementById("recordDetails").style.display = "block";
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    function saveRecord() {
+      var userID = document.getElementById("userID").value;
+      var forWhat = document.getElementById("forWhat").value;
+      var amount = document.getElementById("amount").value;
+
+      // Assume you have a backend API to save the record
+      // You can use fetch or any other method to make an API call
+      // Replace the URL with your actual backend API endpoint
+      fetch(`/api/saveRecord`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userID, forWhat, amount }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Handle the response if needed
+        console.log('Record saved successfully:', data);
+      })
+      .catch(error => console.error('Error:', error));
+    }
+  </script>
+
+</body>
+</html>

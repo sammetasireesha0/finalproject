@@ -1,0 +1,42 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<title>BudgetApp Login</title>
+<link rel="stylesheet" type="text/css" href="/frontend/mainDashboard.css" />
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" >
+
+<script src="../backend/mainDashboard.js"></script>
+
+</head>
+<body>
+
+<div id = "mainp">
+	<div id = "nav">
+		<div id = "summary"></div>
+		<a onclick="loadContent('dashboard.html')"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+		<a onclick="loadContent('logout.html')"><i class="fas fa-sign-out-alt"></i> Logout</a>
+		<!-- <p id="idleText"> Logging out in <span id="timer"></span> seconds...</p> -->
+	</div>
+
+<div id = "frame">
+		<iframe id="contentFrame" src="dashboard.html"></iframe>
+</div>
+
+</div>
+
+<script>
+    function loadContent(page) {
+        var contentFrame = document.getElementById("contentFrame");
+        contentFrame.src = page;
+    }
+	
+
+</script>
+<!-- <script src="../backend/sample.js"></script> -->
+
+</body>
+</html>

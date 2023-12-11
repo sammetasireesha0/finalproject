@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Idle Detection with Always Visible Timer</title>
+  <style>
+    #idleText {
+      display: none;
+      color: red;
+      font-size: 18px;
+    }
+
+    #timer {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<p id="idleText">You have been idle for 1 minute. Logging out in <span id="timer"></span> seconds...</p>
+
+<script>
+  let idleTimer;
+  let countdownTimer;
+  const idleTime = 60000; // 1 minute in milliseconds
+  const idleText = document.getElementById('idleText');
+  const timerDisplay = document.getElementById('timer');
+
+  // Function to display the idle text
+  function showIdleText() {
+    idleText.style.display = 'block';
+    // You can call a logout function here
+    logout();
+  }
+
+  // Function to update the countdown timer
+  function updateTimer(seconds) {
+    timerDisplay.textContent = seconds;
+  }
+
+  // Function to reset the timer and hide the idle text
+  function resetTimer() {
+    clearTimeout(idleTimer);
+    clearInterval(countdownTimer);
+    idleText.style.display = 'block';
+    startTimer();
+  }
+
+  // Function to start the timer
+  function startTimer() {
+    let remainingTime = idleTime;
+
+    idleTimer = setTimeout(showIdleText, idleTime);
+    countdownTimer = setInterval(() => {
+      remainingTime -= 1000;
+      const seconds = Math.ceil(remainingTime / 1000);
+      updateTimer(seconds);
+
+      if (remainingTime <= 0) {
+        clearInterval(countdownTimer);
+      }
+    }, 1000);
+  }
+
+  // Function to simulate the logout process
+  function logout() {
+    // Replace this with your actual logout logic
+    alert('Logging out...'); // You can replace this with your logout logic
+    // For demo purposes, let's reload the page after the alert
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
+  }
+
+  // Event listeners for user interactions
+  document.addEventListener('mousemove', resetTimer);
+  document.addEventListener('keydown', resetTimer);
+  document.addEventListener('mousedown', resetTimer);
+  document.addEventListener('touchstart', resetTimer);
+  
+  // Initial timer start
+  startTimer();
+</script>
+
+</body>
+</html>

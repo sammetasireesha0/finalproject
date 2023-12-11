@@ -1,0 +1,46 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif; 
+}
+#mainp{
+    display: flex;
+    flex-direction: row;
+    margin:  0;
+    height: 100vh;
+}
+#nav {
+    width: 19vw;
+    height: 100vh;
+    background-color: rgb(49, 49, 160)
+
+}
+#summary{
+padding-top: 30px;
+}
+
+#nav a {
+    
+    font-size: larger;
+    display: block;
+    padding: 30px 20px;
+    text-decoration: none;
+    color: #fff;
+    border-bottom: 1px solid #7a7a7a;
+    cursor: pointer;
+}
+
+#nav a:hover {
+    background-color: #555;
+}
+
+#frame {
+    height: 80vw;
+    width: 100vh;
+}
+
+iframe {
+    width: 80vw;
+    height: 100vh;
+    border: none;
+}
